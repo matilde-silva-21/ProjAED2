@@ -11,26 +11,27 @@ Line::Line(std::string code, std::string name, std::string start, std::string en
     else this->night = false;
 }
 
-void Line::readPercurso(char& direction) {
+std::forward_list<std::string> Line::readPercurso(char direction) {
     std::ifstream file("line_"+code+"_"+direction+".csv");
     std::string nlines,code1;
     std::getline(file, nlines);
     int n = std::stoi(nlines);
     if(n!=0){
+        auto it0 = percurso0.before_begin(), it1 = percurso1.before_begin();
         while(n!=0){
             std::getline(file, code1);
             n--;
             if(direction=='0') {
-                auto it = percurso0.before_begin();
-                percurso0.emplace_after(it, code1);
+                it0 = percurso0.insert_after(it0, code1);
             }
             else if(direction=='1'){
-                auto it = percurso1.before_begin();
-                percurso1.emplace_after(it, code1);
+                it1 = percurso1.insert_after(it1, code1);
             }
 
         }
     }
+    if(direction=='0') return percurso0;
+    else return percurso1;
 }
 
 bool Line::operator<(const Line &l2) const{

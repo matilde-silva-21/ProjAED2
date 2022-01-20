@@ -44,6 +44,10 @@ BST<Line> FileHandler::readLines(bool night) {
             }
 
             Line l1(code, name, start, end);
+
+            l1.readPercurso('1');
+            l1.readPercurso('0');
+
             if(night && l1.getNight()){final.insert(l1);}
             else if(!night && !l1.getNight()){final.insert(l1);}
 

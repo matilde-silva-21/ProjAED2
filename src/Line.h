@@ -19,11 +19,13 @@ private:
 
 public:
     Line(std::string code, std::string name, std::string start, std::string end);
-    void readPercurso(char& direction);
+    std::forward_list<std::string> readPercurso(char direction);
     bool operator<(const Line& l2) const;
     bool operator==(const Line& l2) const;
     std::string getCode();
     bool getNight();
+    std::forward_list<std::string> getPercurso0();
+    std::forward_list<std::string> getPercurso1();
 };
 
 
