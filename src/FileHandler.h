@@ -10,14 +10,17 @@
 #include "iostream"
 #include "Line.h"
 #include "Stop.h"
+#include "set"
+#include "bst.h"
+#include "graph.h"
+#include "map"
 
 class FileHandler {
 
 public:
 
-    //nao tenho a certeza se a funcao deve retornar um vetor ou assim
-    void readLines();
-    void readStops();
+    BST<Line> readLines(bool night); //se for true retorna so as linhas noturnas, caso contrario só as diurnas
+    map<int,Stop> readStops();
 
 };
 

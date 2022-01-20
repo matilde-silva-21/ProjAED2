@@ -15,6 +15,7 @@ private:
 
 public:
     Stop(std::string& code,std::string& name, std::string& zona, float& latitude, float& longitude);
+    std::string getCode();
 
 
 };

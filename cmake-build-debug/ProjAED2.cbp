@@ -100,6 +100,9 @@
 		<Unit filename="C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Stop.h">
 			<Option target="ProjAED2"/>
 		</Unit>
+		<Unit filename="C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/bst.h">
+			<Option target="ProjAED2"/>
+		</Unit>
 		<Unit filename="C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/disjointSets.h">
 			<Option target="ProjAED2"/>
 		</Unit>

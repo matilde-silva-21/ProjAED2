@@ -65,3 +65,4 @@ int Graph::prim(int r) {
 int Graph::kruskal() {
     return 0;
 }
+

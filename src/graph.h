@@ -9,8 +9,10 @@
 #include <vector>
 #include <list>
 #include <iostream>
-
+#include "Stop.h"
 using namespace std;
+
+/*criar um mapa que tenha indice igual ao node e depois da origem as stops?*/
 
 class Graph {
     struct Edge {
@@ -27,11 +29,11 @@ class Graph {
     vector<Node> nodes; // The list of nodes being represented
 
 public:
-    // Constructor: nr nodes and direction (default: undirected)
+    // Constructor: nr nodes and direction
     Graph(int nodes, bool dir = true);
 
     // Add edge from source to destination with a certain weight
-    void addEdge(int src, int dest, int weight = 1);
+    void addEdge(int src, int dest, int weight);
 
     // ----- Functions to implement in this class -----
     int prim(int v);

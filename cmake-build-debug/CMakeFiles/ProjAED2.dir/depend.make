@@ -5,14 +5,20 @@ CMakeFiles/ProjAED2.dir/src/FileHandler.cpp.obj: \
  ../src/FileHandler.cpp \
  ../src/FileHandler.h \
  ../src/Line.h \
- ../src/Stop.h
+ ../src/Stop.h \
+ ../src/bst.h \
+ ../src/disjointSets.h \
+ ../src/graph.h \
+ ../src/minHeap.h
 CMakeFiles/ProjAED2.dir/src/Line.cpp.obj: \
  ../src/Line.cpp \
- ../src/Line.h
+ ../src/Line.h \
+ ../src/Stop.h
 CMakeFiles/ProjAED2.dir/src/Stop.cpp.obj: \
  ../src/Stop.cpp \
  ../src/Stop.h
 CMakeFiles/ProjAED2.dir/src/graph.cpp.obj: \
+ ../src/Stop.h \
  ../src/disjointSets.h \
  ../src/graph.cpp \
  ../src/graph.h \
@@ -21,4 +27,8 @@ CMakeFiles/ProjAED2.dir/src/main.cpp.obj: \
  ../src/FileHandler.h \
  ../src/Line.h \
  ../src/Stop.h \
- ../src/main.cpp
+ ../src/bst.h \
+ ../src/disjointSets.h \
+ ../src/graph.h \
+ ../src/main.cpp \
+ ../src/minHeap.h
