@@ -41,3 +41,33 @@ void FileHandler::readLines() {
 
 
 }
+
+void FileHandler::readStops() {
+
+    std::ifstream file("stops.csv");
+    std::string word, name, code, line, zone;
+    float latitude, longitude;
+
+    char delim = ',';
+
+    getline(file, line);
+
+    if(file.is_open()){
+        while(!file.eof()){
+            int count=0;
+
+            std::getline(file, line);
+            std::stringstream ss(line);
+
+            while(std::getline(ss,word, ',')){
+                if(count==0){ code = word; count++;}
+                else if(count==1){name = word; count++;}
+                else if(count==2){zone = word; count++;}
+                else if(count==3){latitude = std::stof(word); count++;}
+                else if(count==4){longitude = std::stof(word); count++;}
+            }
+
+            Stop s1(code,name,zone,latitude,longitude);
+        }
+    }
+}

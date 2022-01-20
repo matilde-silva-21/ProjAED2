@@ -4,7 +4,8 @@
 CMakeFiles/ProjAED2.dir/src/FileHandler.cpp.obj: \
  ../src/FileHandler.cpp \
  ../src/FileHandler.h \
- ../src/Line.h
+ ../src/Line.h \
+ ../src/Stop.h
 CMakeFiles/ProjAED2.dir/src/Line.cpp.obj: \
  ../src/Line.cpp \
  ../src/Line.h
@@ -19,4 +20,5 @@ CMakeFiles/ProjAED2.dir/src/graph.cpp.obj: \
 CMakeFiles/ProjAED2.dir/src/main.cpp.obj: \
  ../src/FileHandler.h \
  ../src/Line.h \
+ ../src/Stop.h \
  ../src/main.cpp

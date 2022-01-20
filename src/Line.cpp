@@ -6,6 +6,6 @@
 
 Line::Line(std::string code, std::string name, std::string start, std::string end): code(code), name(name), start(start), end(end) {
 
-    if(code[code.length()-1]=='M') this.night= true;
-    else this.night = false;
+    if(code[code.length()-1]=='M') this->night= true;
+    else this->night = false;
 }

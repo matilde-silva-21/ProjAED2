@@ -5,4 +5,5 @@
 int main() {
     FileHandler f;
     f.readLines();
+    f.readStops();
 }

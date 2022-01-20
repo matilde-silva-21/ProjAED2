@@ -6,7 +6,16 @@
 #define PROJAED2_STOP_H
 
 
+#include <string>
+
 class Stop {
+private:
+    std::string code, name, zona;
+    float latitude, longitude;
+
+public:
+    Stop(std::string& code,std::string& name, std::string& zona, float& latitude, float& longitude);
+
 
 };
 
