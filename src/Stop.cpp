@@ -8,6 +8,31 @@ Stop::Stop(std::string& code, std::string& name, std::string& zona, float& latit
 
 }
 
-std::string Stop::getCode() {
+std::string Stop::getCode() const {
     return code;
 }
+
+float Stop::getLatitude() const{
+    return latitude;
+}
+
+float Stop::getLongitude() const{
+    return longitude;
+}
+
+bool Stop::operator<(const Stop& s1) const {
+    return code<s1.code;
+}
+
+bool Stop::operator==(const Stop &s1) const {
+    return s1.code==code;
+}
+
+void Stop::addLine(Line l1) {
+    linhas.insert(l1);
+}
+
+std::set<Line> Stop::getLines() {
+    return linhas;
+}
+

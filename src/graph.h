@@ -17,7 +17,7 @@ using namespace std;
 class Graph {
     struct Edge {
         int dest;   // Destination node
-        int weight; // An integer weight
+        double weight; // An integer weight
     };
 
     struct Node {
@@ -33,11 +33,19 @@ public:
     Graph(int nodes, bool dir = true);
 
     // Add edge from source to destination with a certain weight
-    void addEdge(int src, int dest, int weight);
+    void addEdge(int src, int dest, double weight);
 
     // ----- Functions to implement in this class -----
     int prim(int v);
     int kruskal();
+
+    list<int> getAdjNodes(int n) {
+        list<int> final;
+        for(auto e: nodes[n].adj){
+            final.push_back(e.dest);
+        }
+        return final;
+    }
 };
 
 #endif

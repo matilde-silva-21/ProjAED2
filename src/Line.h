@@ -7,7 +7,6 @@
 #include "string"
 #include "iostream"
 #include "forward_list"
-#include "Stop.h"
 
 
 class Line {
@@ -22,10 +21,10 @@ public:
     std::forward_list<std::string> readPercurso(char direction);
     bool operator<(const Line& l2) const;
     bool operator==(const Line& l2) const;
-    std::string getCode();
+    std::string getCode() const;
     bool getNight();
-    std::forward_list<std::string> getPercurso0();
-    std::forward_list<std::string> getPercurso1();
+    std::forward_list<std::string> getPercurso0() const;
+    std::forward_list<std::string> getPercurso1() const;
 };
 
 

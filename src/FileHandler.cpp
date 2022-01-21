@@ -58,12 +58,12 @@ BST<Line> FileHandler::readLines(bool night) {
 
 }
 
-map<int,Stop> FileHandler::readStops() {
+map<int, Stop> FileHandler::readStops() {
 
     std::ifstream file("stops.csv");
     std::string word, name, code, line, zone;
     float latitude, longitude;
-    map<int,Stop> final;
+    map<int, Stop> final;
     int nstops=0;
 
 

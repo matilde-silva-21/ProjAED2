@@ -20,7 +20,7 @@ class FileHandler {
 public:
 
     BST<Line> readLines(bool night); //se for true retorna so as linhas noturnas, caso contrario só as diurnas
-    map<int,Stop> readStops();
+    map<int, Stop> readStops();
 
 };
 

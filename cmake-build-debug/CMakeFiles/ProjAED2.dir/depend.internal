@@ -10,14 +10,24 @@ CMakeFiles/ProjAED2.dir/src/FileHandler.cpp.obj
  C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/disjointSets.h
  C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/graph.h
  C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/minHeap.h
+CMakeFiles/ProjAED2.dir/src/Initialize.cpp.obj
+ C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Initialize.cpp
+ C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Initialize.h
+ C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Line.h
+ C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Stop.h
+ C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/bst.h
+ C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/disjointSets.h
+ C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/graph.h
+ C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/minHeap.h
 CMakeFiles/ProjAED2.dir/src/Line.cpp.obj
  C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Line.cpp
  C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Line.h
- C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Stop.h
 CMakeFiles/ProjAED2.dir/src/Stop.cpp.obj
+ C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Line.h
  C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Stop.cpp
  C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Stop.h
 CMakeFiles/ProjAED2.dir/src/graph.cpp.obj
+ C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Line.h
  C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Stop.h
  C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/disjointSets.h
  C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/graph.cpp
@@ -25,6 +35,7 @@ CMakeFiles/ProjAED2.dir/src/graph.cpp.obj
  C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/minHeap.h
 CMakeFiles/ProjAED2.dir/src/main.cpp.obj
  C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/FileHandler.h
+ C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Initialize.h
  C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Line.h
  C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Stop.h
  C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/bst.h

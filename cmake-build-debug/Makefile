@@ -152,6 +152,30 @@ src/FileHandler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ProjAED2.dir\build.make CMakeFiles/ProjAED2.dir/src/FileHandler.cpp.s
 .PHONY : src/FileHandler.cpp.s
 
+src/Initialize.obj: src/Initialize.cpp.obj
+.PHONY : src/Initialize.obj
+
+# target to build an object file
+src/Initialize.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ProjAED2.dir\build.make CMakeFiles/ProjAED2.dir/src/Initialize.cpp.obj
+.PHONY : src/Initialize.cpp.obj
+
+src/Initialize.i: src/Initialize.cpp.i
+.PHONY : src/Initialize.i
+
+# target to preprocess a source file
+src/Initialize.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ProjAED2.dir\build.make CMakeFiles/ProjAED2.dir/src/Initialize.cpp.i
+.PHONY : src/Initialize.cpp.i
+
+src/Initialize.s: src/Initialize.cpp.s
+.PHONY : src/Initialize.s
+
+# target to generate assembly for a file
+src/Initialize.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ProjAED2.dir\build.make CMakeFiles/ProjAED2.dir/src/Initialize.cpp.s
+.PHONY : src/Initialize.cpp.s
+
 src/Line.obj: src/Line.cpp.obj
 .PHONY : src/Line.obj
 
@@ -260,6 +284,9 @@ help:
 	@echo ... src/FileHandler.obj
 	@echo ... src/FileHandler.i
 	@echo ... src/FileHandler.s
+	@echo ... src/Initialize.obj
+	@echo ... src/Initialize.i
+	@echo ... src/Initialize.s
 	@echo ... src/Line.obj
 	@echo ... src/Line.i
 	@echo ... src/Line.s

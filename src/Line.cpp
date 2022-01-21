@@ -42,10 +42,19 @@ bool Line::operator==(const Line &l2) const{
     return code==l2.code;
 }
 
-std::string Line::getCode() {
+std::string Line::getCode() const{
     return code;
 }
 
 bool Line::getNight() {
     return night;
 }
+
+std::forward_list<std::string> Line::getPercurso0() const{
+    return percurso0;
+}
+
+std::forward_list<std::string> Line::getPercurso1() const{
+    return percurso1;
+}
+
