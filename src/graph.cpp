@@ -3,16 +3,20 @@
 
 #include <queue>
 #include "graph.h"
+#include "algorithm"
 
 // Constructor: nr nodes and direction
 Graph::Graph(int num, bool dir) : n(num), hasDir(dir), nodes(num+1) {
 }
 
 // Add edge from source to destination with a certain weight
-void Graph::addEdge(int src, int dest, double weight) {
+void Graph::addEdge(int src, int dest, double weight){
     if (src<1 || src>n || dest<1 || dest>n) return;
-    nodes[src].adj.push_back({dest, weight});
-    if (!hasDir) nodes[dest].adj.push_back({src, weight});
+
+    if(noDuplicates(src,dest,weight)){
+        nodes[src].adj.push_back({dest, weight});
+        if (!hasDir) nodes[dest].adj.push_back({src, weight});
+    }
 }
 
 bool inQueue(queue<int> q, int a){
@@ -64,4 +68,11 @@ int Graph::prim(int r) {
 // TODO
 int Graph::kruskal() {
     return 0;
+}
+
+bool Graph::noDuplicates(int src, int dest, double weight) {
+    for(auto e: nodes[src].adj){
+        if(e.dest == dest) return false;
+    }
+    return true;
 }

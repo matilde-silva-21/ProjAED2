@@ -46,6 +46,8 @@ public:
         }
         return final;
     }
+
+    bool noDuplicates(int src, int dest, double weight);
 };
 
 #endif

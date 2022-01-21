@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/FileHandler.cpp
+FileHandler.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/FileHandler.h
+
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/FileHandler.h
 fstream
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/fstream
@@ -26,6 +30,10 @@ C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/graph.h
 map
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/map
 
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Initialize.cpp
+Initialize.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Initialize.h
+
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Initialize.h
 Stop.h
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Stop.h
@@ -40,6 +48,12 @@ C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/cmath
 bst.h
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/bst.h
 
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Line.cpp
+fstream
+-
+Line.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Line.h
+
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Line.h
 string
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/string
@@ -47,6 +61,10 @@ iostream
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/iostream
 forward_list
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/forward_list
+
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Stop.cpp
+Stop.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Stop.h
 
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Stop.h
 string
@@ -67,6 +85,14 @@ queue
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/disjointSets.h
 unordered_map
 -
+
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/graph.cpp
+queue
+-
+graph.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/graph.h
+algorithm
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/algorithm
 
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/graph.h
 minHeap.h
