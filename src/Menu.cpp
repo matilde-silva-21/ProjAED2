@@ -33,7 +33,7 @@ void Menu::takeInput() {
                 //show nearby stops
                 break;
             case '2':
-                std::cin >> departureStop;
+                std::cin >> destinyLocation;
                 //show nearby stops
                 break;
             case '3':
