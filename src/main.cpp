@@ -4,9 +4,14 @@
 #include <algorithm>
 #include "Initialize.h"
 #include "graph.h"
+#include "Menu.h"
 
 
 int main() {
+    Menu menu;
+    menu.showMenu(); //needs a while true so we can return to the menu
+    menu.takeInput();
+
     FileHandler f;
     BST<Line> diurno = f.readLines(false), noturna=f.readLines(true);
 
