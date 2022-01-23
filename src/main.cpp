@@ -8,9 +8,9 @@
 
 
 int main() {
-    Menu menu;
-    menu.showMenu(); //needs a while true so we can return to the menu
-    menu.takeInput();
+        Menu menu;
+        menu.showMenu(); //needs a while true so we can return to the menu
+        menu.takeInput();
 
     FileHandler f;
     BST<Line> diurno = f.readLines(false), noturna=f.readLines(true);
@@ -33,13 +33,13 @@ int main() {
 
     list<int> l = g1.getAdjNodes(index);
 
-    cout << "paragens adjacentes a TRD1\n";
+    //cout << "paragens adjacentes a TRD1\n";
 
     for(auto i: l){
         cout << paragens[i].getCode() << " ";
     }
 
-    cout << "\n\nLinhas que passam em TRD1:\n";
+    //cout << "\n\nLinhas que passam em TRD1:\n";
 
     for(auto& i: paragens[index].getLines()){
         cout << i.getCode() << " ";

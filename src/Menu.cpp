@@ -5,11 +5,11 @@
 #include "Menu.h"
 #include <conio.h>
 
-void Menu::Menu(){}
+Menu::Menu(){}
 
 void Menu::showMenu() {
-    std::cout << "STCP APP" << endl;
-    std::cout << "Press the indicated below numbers to select what you want to do" << std::endl;
+    std::cout << "STCP APP" << std::endl;
+    std::cout << "Selecting departure and destiny of your trip" << std::endl;
     //calculate the best path between two locations
     std::cout << "1 - Choose departure location (coordinates)" << std::endl;
     std::cout << "2 - Choose destiny location (coordinates)" << std::endl;
@@ -17,68 +17,95 @@ void Menu::showMenu() {
     //need to verify if this path is valid (if it's in lines.csv)
     std::cout << "3 - Choose departure stop" << std::endl;
     std::cout << "4 - Choose destiny stop" << std::endl;
-    std::cout << "Now press the indicated below numbers to choose the type of path you want"
+    std::cout << "Selecting the type of trip you want to do" << std::endl;
     std::cout << "5 - Pass through the minimum number of stops" << std::endl;
     std::cout << "6 - Minimum distance" << std::endl;
     std::cout << "7 - Minimum line changes" << std::endl;
     std::cout << "8 - Cheaper trip" << std::endl;
     //probably some more options, this is just a draft
     }
-}
 
 void Menu::takeInput() {
+    while (true){
+        std::cout << "Please, given the above options, choose what you pretend to do: ";
+        std::cin >> choice;
         switch (choice) {
             case '1':
-                std::cin >>  departureLocation;
-                //show nearby stops
-                break;
-            case '2':
-                std::cin >> destinyLocation;
-                //show nearby stops
-                break;
-            case '3':
-                std::cin >> departureStop;
-                break;
-            case '4':
-                std::cin >> destinyStop;
-                break;
-            case '5':
-                if (departureStop.empty() || destinyStop.empty()) {
-                    std::cout << "You can't choose the type of path before selecting both stops!" << std::endl;
-                    showMenu():
+                std::cout << "Departure location: ";
+                std::cin >> departureLocation;
+                if (!destinyLocation.empty()){
+                    break;
                 }
-                else {
+                //show nearby stops
+            case '2':
+                std::cout << "Destiny location: ";
+                std::cin >> destinyLocation;
+/*                std::cout << std::endl;
+                std::cout << "Please, input choice: ";
+                std::cin >> choice;*/
+                //show nearby stops
+                continue;
+            case '3':
+                std::cout << "Departure stop: ";
+                std::cin >> departureStop;
+                if (!destinyStop.empty()){
+                    break;
+                }
+            case '4':
+                std::cout << "Destiny stop: ";
+                std::cin >> destinyStop;
+/*                std::cout << std::endl;
+                std::cout << "Please, input choice: ";
+                std::cin >> choice;*/
+                continue;
+            case '5':
+                if ((!departureLocation.empty() && !destinyLocation.empty())) {
+                    //calculate the best path for all the stops nearby this location and give the user the best departure stop and the best destiny stop
+                    std::cout << "Showing best path given the locations..." << std::endl;
+                } else if ((!departureStop.empty() && !destinyStop.empty())) {
+                    std::cout << "Showing best path given the paths..." << std::endl;
                     //provide user with this type of path
+                } else {
+                    std::cout << "You need to select both stops or both locations to know the best path" << std::endl;
+                    continue;
                 }
                 break;
             case '6':
-                if (departureStop.empty() || destinyStop.empty()) {
-                    std::cout << "You can't choose the type of path before selecting both stops!" << std::endl;
-                    showMenu():
-                }
-                else {
+                if ((!departureLocation.empty() && !destinyLocation.empty())) {
+                    //calculate the best path for all the stops nearby this location and give the user the best departure stop and the best destiny stop
+                    std::cout << "Showing best path given the locations..." << std::endl;
+                } else if ((!departureStop.empty() && !destinyStop.empty())) {
+                    std::cout << "Showing best path given the paths..." << std::endl;
                     //provide user with this type of path
+                } else {
+                    std::cout << "You need to select both stops or both locations to know the best path" << std::endl;
+                    continue;
                 }
                 break;
             case '7':
-                if (departureStop.empty() || destinyStop.empty()) {
-                    std::cout << "You can't choose the type of path before selecting both stops!" << std::endl;
-                    showMenu():
-                }
-                else {
+                if ((!departureLocation.empty() && !destinyLocation.empty())) {
+                    //calculate the best path for all the stops nearby this location and give the user the best departure stop and the best destiny stop
+                    std::cout << "Showing best path given the locations..." << std::endl;
+                } else if ((!departureStop.empty() && !destinyStop.empty())) {
+                    std::cout << "Showing best path given the paths..." << std::endl;
                     //provide user with this type of path
+                } else {
+                    std::cout << "You need to select both stops or both locations to know the best path" << std::endl;
+                    continue;
                 }
                 break;
             case '8':
-                if (departureStop.empty() || destinyStop.empty()) {
-                    std::cout << "You can't choose the type of path before selecting both stops!" << std::endl;
-                    showMenu():
-                }
-                else {
+                if ((!departureLocation.empty() && !destinyLocation.empty())) {
+                    //calculate the best path for all the stops nearby this location and give the user the best departure stop and the best destiny stop
+                    std::cout << "Showing best path given the locations..." << std::endl;
+                } else if ((!departureStop.empty() && !destinyStop.empty())) {
+                    std::cout << "Showing best path given the paths..." << std::endl;
                     //provide user with this type of path
+                } else {
+                    std::cout << "You need to select both stops or both locations to know the best path" << std::endl;
+                    continue;
                 }
                 break;
         }
     }
-
 }
