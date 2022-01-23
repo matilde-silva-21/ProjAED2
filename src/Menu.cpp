@@ -17,7 +17,7 @@ void Menu::showMenu() {
     //need to verify if this path is valid (if it's in lines.csv)
     std::cout << "3 - Choose departure stop" << std::endl;
     std::cout << "4 - Choose destiny stop" << std::endl;
-    std::cout << "Selecting the type of trip you want to do" << std::endl;
+    std::cout << "Selecting the type of 'best trip' you want to do" << std::endl;
     std::cout << "5 - Pass through the minimum number of stops" << std::endl;
     std::cout << "6 - Minimum distance" << std::endl;
     std::cout << "7 - Minimum line changes" << std::endl;
@@ -29,10 +29,12 @@ void Menu::takeInput() {
     while (true){
         std::cout << "Please, given the above options, choose what you pretend to do: ";
         std::cin >> choice;
+        std::cout << std::endl;
         switch (choice) {
             case '1':
                 std::cout << "Departure location: ";
                 std::cin >> departureLocation;
+                std::cout << std::endl;
                 if (!destinyLocation.empty()){
                     break;
                 }
@@ -40,6 +42,7 @@ void Menu::takeInput() {
             case '2':
                 std::cout << "Destiny location: ";
                 std::cin >> destinyLocation;
+                std::cout << std::endl;
 /*                std::cout << std::endl;
                 std::cout << "Please, input choice: ";
                 std::cin >> choice;*/
@@ -54,6 +57,7 @@ void Menu::takeInput() {
             case '4':
                 std::cout << "Destiny stop: ";
                 std::cin >> destinyStop;
+                std::cout << std::endl;
 /*                std::cout << std::endl;
                 std::cout << "Please, input choice: ";
                 std::cin >> choice;*/
@@ -79,6 +83,7 @@ void Menu::takeInput() {
                     //provide user with this type of path
                 } else {
                     std::cout << "You need to select both stops or both locations to know the best path" << std::endl;
+                    std::cout << std::endl;
                     continue;
                 }
                 break;
@@ -91,6 +96,7 @@ void Menu::takeInput() {
                     //provide user with this type of path
                 } else {
                     std::cout << "You need to select both stops or both locations to know the best path" << std::endl;
+                    std::cout << std::endl;
                     continue;
                 }
                 break;
@@ -103,6 +109,7 @@ void Menu::takeInput() {
                     //provide user with this type of path
                 } else {
                     std::cout << "You need to select both stops or both locations to know the best path" << std::endl;
+                    std::cout << std::endl;
                     continue;
                 }
                 break;
