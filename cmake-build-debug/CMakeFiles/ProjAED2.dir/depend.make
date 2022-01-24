@@ -22,6 +22,9 @@ CMakeFiles/ProjAED2.dir/src/Initialize.cpp.obj: \
 CMakeFiles/ProjAED2.dir/src/Line.cpp.obj: \
  ../src/Line.cpp \
  ../src/Line.h
+CMakeFiles/ProjAED2.dir/src/Menu.cpp.obj: \
+ ../src/Menu.cpp \
+ ../src/Menu.h
 CMakeFiles/ProjAED2.dir/src/Stop.cpp.obj: \
  ../src/Line.h \
  ../src/Stop.cpp \
@@ -37,6 +40,7 @@ CMakeFiles/ProjAED2.dir/src/main.cpp.obj: \
  ../src/FileHandler.h \
  ../src/Initialize.h \
  ../src/Line.h \
+ ../src/Menu.h \
  ../src/Stop.h \
  ../src/bst.h \
  ../src/disjointSets.h \

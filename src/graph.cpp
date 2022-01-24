@@ -2,15 +2,18 @@
 // Pedro Ribeiro (DCC/FCUP) [09/01/2022]
 
 #include <queue>
+#include <map>
 #include "graph.h"
 #include "algorithm"
+#include "minHeap.h"
+
 
 // Constructor: nr nodes and direction
 Graph::Graph(int num, bool dir) : n(num), hasDir(dir), nodes(num+1) {
 }
 
 // Add edge from source to destination with a certain weight
-void Graph::addEdge(int src, int dest, double weight){
+void Graph::addEdge(int src, int dest, float weight){
     if (src<1 || src>n || dest<1 || dest>n) return;
 
     if(noDuplicates(src,dest,weight)){
@@ -61,18 +64,91 @@ int Graph::prim(int r) {
     return min;
 }
 
-
-// ----------------------------------------------------------
-// Exercicio 5: Algoritmo de Kruskal
-// ----------------------------------------------------------
-// TODO
-int Graph::kruskal() {
-    return 0;
-}
-
 bool Graph::noDuplicates(int src, int dest, double weight) {
     for(auto e: nodes[src].adj){
         if(e.dest == dest) return false;
     }
     return true;
 }
+
+
+
+vector<int> Graph::Dijkstra(int v, int b, float& d){
+    vector<int> course;
+    if (v == b) return course;
+    //distance representa a distancia de qualquer node ao node 1
+    int predecessor[nodes.size() + 1];
+    float distance[nodes.size() + 1];
+    for (int i = 1; i <= n; i++) {
+        distance[i] = FLOAT_MAX;
+        predecessor[i] = -1;
+        nodes[i].visited = false;
+    }
+    queue<int> q; // queue of unvisited nodes
+    q.push(v);
+    distance[v] = 0;
+    nodes[v].visited = true;
+    while (!q.empty()) { // while there are still unvisited nodes
+        int u = q.front();
+        q.pop();
+        for (auto e: nodes[u].adj) {
+            int w = e.dest;
+            if (!nodes[w].visited) {
+                distance[w] = distance[u] + e.weight;
+                predecessor[w] = u;
+                q.push(w);
+                nodes[w].visited = true;
+
+                if (w == b) {
+                    d = distance[b];
+                    int one = b, two;
+
+                    course.push_back(b);
+
+                    while(one!=v){
+                        two = predecessor[one];
+                        course.emplace(course.begin(),two);
+                        one = two;
+                    }
+                    return course;
+                }
+            }
+        }
+    }
+
+    return course;
+}
+
+
+/*{
+    MinHeap<int, float> heap(n,0);
+    vector<int> visited;
+    d=0.0;
+    for(int i=1;i<=nodes.size(); i++){
+        heap.insert(i,FLOAT_MAX);
+        nodes[i].visited = false;
+    }
+
+   heap.decreaseKey(start, 0.0);
+
+    while(heap.getSize()!=0){
+        pair<int,float> p = heap.removeMin();
+        int min = p.first;
+        d += p.second;
+        if(min == finish) {
+            visited.push_back(finish);
+            break;
+        }
+
+        for(auto& e: nodes[min].adj){
+            int destine = e.dest;
+            float weight = e.weight;
+            heap.decreaseKey(destine,weight);
+        }
+
+        visited.push_back(min);
+    }
+
+    return visited;
+
+}*/
