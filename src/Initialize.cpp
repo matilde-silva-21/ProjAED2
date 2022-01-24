@@ -71,3 +71,16 @@ map<string, int> Initialize::getDictionary() {
 int Initialize::findMapIndex(string& paragem) {
     return  dictionary[paragem];
 }
+
+Stop Initialize::closestStation(map<int, Stop> &paragens, float latitude, float longitude) {
+    float min = FLOAT_MAX;
+    auto final = paragens.end();
+    for(auto it = paragens.begin(); it!=paragens.end() ; it++){
+        float distance = haversine(it->second.getLatitude(), it->second.getLongitude(),latitude,longitude);
+        if(min>distance){
+            min = distance;
+            final = it;
+        }
+    }
+    return final->second;
+}
