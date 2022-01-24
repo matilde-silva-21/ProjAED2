@@ -43,7 +43,9 @@ public:
     int prim(int v);
 
     //algoritmo que pesquisa a menor distancia
-    vector<int> Dijkstra(int a, int b, float& d);
+    vector<int> bfs(int a, int b, float& d);
+
+    vector<int> dijkstra(int start, int finish);
 
     list<int> getAdjNodes(int n) {
         list<int> final;

@@ -73,7 +73,7 @@ bool Graph::noDuplicates(int src, int dest, double weight) {
 
 
 
-vector<int> Graph::Dijkstra(int v, int b, float& d){
+vector<int> Graph::bfs(int v, int b, float& d){
     vector<int> course;
     if (v == b) return course;
     //distance representa a distancia de qualquer node ao node 1
@@ -119,36 +119,48 @@ vector<int> Graph::Dijkstra(int v, int b, float& d){
     return course;
 }
 
+vector<int> Graph::dijkstra(int start, int finish) {
 
-/*{
+    float distance[n+1];
     MinHeap<int, float> heap(n,0);
-    vector<int> visited;
-    d=0.0;
+    int predecessor[n+1];
+    vector<int> course;
+
     for(int i=1;i<=nodes.size(); i++){
-        heap.insert(i,FLOAT_MAX);
+        distance[i] = FLOAT_MAX;
         nodes[i].visited = false;
     }
 
-   heap.decreaseKey(start, 0.0);
+    heap.insert(start, 0.0);
 
     while(heap.getSize()!=0){
         pair<int,float> p = heap.removeMin();
         int min = p.first;
-        d += p.second;
+        nodes[min].visited = true;
         if(min == finish) {
-            visited.push_back(finish);
-            break;
-        }
+            int one = finish, two;
 
+            course.push_back(finish);
+
+            while(one!=start){
+                two = predecessor[one];
+                course.emplace(course.begin(),two);
+                one = two;
+            }
+            return course;
+        }
         for(auto& e: nodes[min].adj){
-            int destine = e.dest;
-            float weight = e.weight;
-            heap.decreaseKey(destine,weight);
+            if(nodes[e.dest].visited) break;
+
+            else{
+                int destine = e.dest;
+                float weight = e.weight + p.second;
+                predecessor[destine]=min;
+                if(!heap.hasKey(destine)) heap.insert(destine,weight);
+                else heap.decreaseKey(destine,weight);
+            }
         }
 
-        visited.push_back(min);
     }
-
-    return visited;
-
-}*/
+    return course;
+}
