@@ -100,6 +100,12 @@
 		<Unit filename="C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Line.h">
 			<Option target="ProjAED2"/>
 		</Unit>
+		<Unit filename="C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Menu.cpp">
+			<Option target="ProjAED2"/>
+		</Unit>
+		<Unit filename="C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Menu.h">
+			<Option target="ProjAED2"/>
+		</Unit>
 		<Unit filename="C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Stop.cpp">
 			<Option target="ProjAED2"/>
 		</Unit>

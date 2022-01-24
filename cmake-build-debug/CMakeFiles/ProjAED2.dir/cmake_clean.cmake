@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/ProjAED2.dir/src/FileHandler.cpp.obj"
   "CMakeFiles/ProjAED2.dir/src/Initialize.cpp.obj"
   "CMakeFiles/ProjAED2.dir/src/Line.cpp.obj"
+  "CMakeFiles/ProjAED2.dir/src/Menu.cpp.obj"
   "CMakeFiles/ProjAED2.dir/src/Stop.cpp.obj"
   "CMakeFiles/ProjAED2.dir/src/graph.cpp.obj"
   "CMakeFiles/ProjAED2.dir/src/main.cpp.obj"
