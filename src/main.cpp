@@ -33,10 +33,19 @@ int main() {
     float d;
 
     vector<int> viagem = g1.dijkstra(i1.findMapIndex(p),i1.findMapIndex(q));
+    vector<Stop> r;
+    r.reserve(viagem.size());
+
+    for(auto e: viagem){
+        r.push_back(paragens[e]);
+    }
+
+    vector<Line> v = i1.stopsToLine(r);
+
     cout << viagem.size()<<" percurso desde TRD1 ate AML1 "<<endl;
 
-    for(int i=0; i<viagem.size() ; i++){
-        cout << i<<" "<<paragens[viagem[i]].getCode() << " ";
+    for(int i=0; i<v.size() ; i++){
+        cout <<" "<<v[i].getCode() << " ";
     }
 
 }

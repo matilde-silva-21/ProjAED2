@@ -84,3 +84,35 @@ Stop Initialize::closestStation(map<int, Stop> &paragens, float latitude, float 
     }
     return final->second;
 }
+
+vector<Line> Initialize::stopsToLine(const vector<Stop> &s1) {
+
+    vector<Line> final;
+    set<Line> matchingLines;
+    map<Line, set<Stop>> counter; //para cada linha as stops no percurso
+    int check = 1;
+
+    for(const Stop & it : s1){
+        set<Line> linhas1 = it.getLines();
+        for(const Line& l1: linhas1){
+            //se a linha nao existir no set
+            if(matchingLines.insert(l1).second) {
+                set<Stop> v1;
+                v1.insert(it);
+                counter[l1] = v1;
+            }
+            //se a linha existir
+            else{
+                counter[l1].insert(it);
+            }
+        }
+    }
+
+    //ate agora isto so funciona para viagens com uma linha, sem troca, mesmo que seja na mesma paragem
+
+    for(auto it = counter.begin(); it!=counter.end(); it++){
+        if(it->second.size() == s1.size()) final.push_back(it->first);
+    }
+
+    return final;
+}

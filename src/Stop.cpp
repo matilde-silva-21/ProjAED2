@@ -32,7 +32,7 @@ void Stop::addLine(Line l1) {
     linhas.insert(l1);
 }
 
-std::set<Line> Stop::getLines() {
+std::set<Line> Stop::getLines() const {
     return linhas;
 }
 

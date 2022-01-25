@@ -25,7 +25,7 @@ public:
     bool operator<(const Stop& s1) const;
     bool operator==(const Stop& s1) const;
     void addLine(Line l1);
-    std::set<Line> getLines();
+    std::set<Line> getLines() const;
 };
 
 

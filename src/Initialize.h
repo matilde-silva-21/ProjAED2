@@ -27,7 +27,9 @@ public:
     map<string,int> getDictionary();
     int findMapIndex(string& paragem);
 
-    Stop closestStation(map<int,Stop>& paragens, float latitude, float longitude);
+    static Stop closestStation(map<int,Stop>& paragens, float latitude, float longitude);
+
+    vector<Line> stopsToLine(const vector<Stop>& s1);
 
 };
 
