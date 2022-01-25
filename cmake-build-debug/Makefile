@@ -200,6 +200,30 @@ src/Line.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ProjAED2.dir\build.make CMakeFiles/ProjAED2.dir/src/Line.cpp.s
 .PHONY : src/Line.cpp.s
 
+src/Menu.obj: src/Menu.cpp.obj
+.PHONY : src/Menu.obj
+
+# target to build an object file
+src/Menu.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ProjAED2.dir\build.make CMakeFiles/ProjAED2.dir/src/Menu.cpp.obj
+.PHONY : src/Menu.cpp.obj
+
+src/Menu.i: src/Menu.cpp.i
+.PHONY : src/Menu.i
+
+# target to preprocess a source file
+src/Menu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ProjAED2.dir\build.make CMakeFiles/ProjAED2.dir/src/Menu.cpp.i
+.PHONY : src/Menu.cpp.i
+
+src/Menu.s: src/Menu.cpp.s
+.PHONY : src/Menu.s
+
+# target to generate assembly for a file
+src/Menu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ProjAED2.dir\build.make CMakeFiles/ProjAED2.dir/src/Menu.cpp.s
+.PHONY : src/Menu.cpp.s
+
 src/Stop.obj: src/Stop.cpp.obj
 .PHONY : src/Stop.obj
 
@@ -290,6 +314,9 @@ help:
 	@echo ... src/Line.obj
 	@echo ... src/Line.i
 	@echo ... src/Line.s
+	@echo ... src/Menu.obj
+	@echo ... src/Menu.i
+	@echo ... src/Menu.s
 	@echo ... src/Stop.obj
 	@echo ... src/Stop.i
 	@echo ... src/Stop.s

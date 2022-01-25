@@ -3,6 +3,7 @@
 
 #ifndef _GRAPH_H_
 #define _GRAPH_H_
+#define  FLOAT_MAX 1000000000000000.1
 
 #include "minHeap.h"
 #include "disjointSets.h"
@@ -10,6 +11,8 @@
 #include <list>
 #include <iostream>
 #include "Stop.h"
+#include "queue"
+#include "stack"
 using namespace std;
 
 /*criar um mapa que tenha indice igual ao node e depois da origem as stops?*/
@@ -17,11 +20,12 @@ using namespace std;
 class Graph {
     struct Edge {
         int dest;   // Destination node
-        double weight; // An integer weight
+        float weight; // An integer weight
     };
 
     struct Node {
         list<Edge> adj; // The list of outgoing edges (to adjacent nodes)
+        bool visited;
     };
 
     int n;              // Graph size (vertices are numbered from 1 to n)
@@ -33,11 +37,15 @@ public:
     Graph(int nodes, bool dir = true);
 
     // Add edge from source to destination with a certain weight
-    void addEdge(int src, int dest, double weight);
+    void addEdge(int src, int dest, float weight);
 
     // ----- Functions to implement in this class -----
     int prim(int v);
-    int kruskal();
+
+    //algoritmo que pesquisa a menor distancia
+    vector<int> bfs(int a, int b, float& d);
+
+    vector<int> dijkstra(int start, int finish);
 
     list<int> getAdjNodes(int n) {
         list<int> final;

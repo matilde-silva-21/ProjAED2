@@ -23,7 +23,7 @@ void Menu::showMenu() {
     std::cout << "7 - Minimum line changes" << std::endl;
     std::cout << "8 - Cheaper trip" << std::endl;
     //probably some more options, this is just a draft
-    }
+}
 
 void Menu::takeInput() {
     while (true){
