@@ -25,27 +25,29 @@ int main() {
     Initialize i1;
     i1.fillDictionary(paragens);
 
-    i1.addAllEdges(g1,paragens,diurno);
-    i1.addAllEdges(g1,paragens,noturna);
+    map<string, int> zonas = i1.getZonas();
+    map<int, string> dictZonas;
 
-    string p = "TRD1", q = "AML1";
-
-    float d;
-
-    vector<int> viagem = g1.dijkstra(i1.findMapIndex(p),i1.findMapIndex(q));
-    vector<Stop> r;
-    r.reserve(viagem.size());
-
-    for(auto e: viagem){
-        r.push_back(paragens[e]);
+    for(auto it: zonas){
+        dictZonas[it.second] = it.first;
+        cout <<it.first<<" ";
     }
 
-    vector<Line> v = i1.stopsToLine(r);
 
-    cout << viagem.size()<<" percurso desde TRD1 ate AML1 "<<endl;
+    Graph g2(zonas.size(), false);
 
-    for(int i=0; i<v.size() ; i++){
-        cout <<" "<<v[i].getCode() << " ";
+    string s1 = "TRD1", s2 = "AML1";
+    i1.addAllEdges(g1,paragens,diurno,g2);
+    i1.addAllEdges(g1,paragens,noturna,g2);
+
+    // se o grafo n liga duas zonas que estao conectadas geograficamente,
+    // é porque nao ha linhas coincidentes entre as duas zonas e portanto nao importa que nao haja edge
+
+    vector<int> ferro = i1.cheapestRoute(g1,g2,paragens,i1.findMapIndex(s1),i1.findMapIndex(s2),dictZonas);
+    vector<int> mano = g1.dijkstra(i1.findMapIndex(s1),i1.findMapIndex(s2));
+    cout<<endl;
+
+    for(auto it: mano){
+        cout << paragens[it].getCode() << " ";
     }
-
 }

@@ -16,10 +16,12 @@ Graph::Graph(int num, bool dir) : n(num), hasDir(dir), nodes(num+1) {
 void Graph::addEdge(int src, int dest, float weight){
     if (src<1 || src>n || dest<1 || dest>n) return;
 
+
     if(noDuplicates(src,dest,weight)){
-        nodes[src].adj.push_back({dest, weight});
-        if (!hasDir) nodes[dest].adj.push_back({src, weight});
-    }
+            nodes[src].adj.push_back({dest, weight});
+            if(!hasDir)nodes[dest].adj.push_back({src, weight});
+        }
+
 }
 
 bool inQueue(queue<int> q, int a){
@@ -36,7 +38,6 @@ int Graph::prim(int r) {
 
     for(int i=1; i<=nodes.size(); i++){
         distance[i]=INT16_MAX;
-        parent[i]=NULL;
         q.push(i);
     }
 

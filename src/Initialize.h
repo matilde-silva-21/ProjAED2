@@ -11,25 +11,28 @@
 #include "Line.h"
 #include "cmath"
 #include "bst.h"
-
+#include "algorithm"
 
 class Initialize {
 
 private:
-    map<string,int> dictionary;
+    map<string,int> dictionary, zonas;
 
 public:
     void fillDictionary(const map<int, Stop>& paragens);
     static double haversine(double lat1, double lon1, double lat2, double lon2);
     double peso(const Stop& s1, const Stop& s2);
     //esta funcao adiciona as edges e atualiza a informacao das linhas em cada stop
-    void addAllEdges(Graph& g1, map<int, Stop> &paragens, const BST<Line>& linhas);
+    void addAllEdges(Graph& g1, map<int, Stop> &paragens, const BST<Line>& linhas, Graph& g2);
     map<string,int> getDictionary();
+    map<string,int> getZonas();
     int findMapIndex(string& paragem);
 
     static Stop closestStation(map<int,Stop>& paragens, float latitude, float longitude);
 
     vector<Line> stopsToLine(const vector<Stop>& s1);
+
+    vector<int> cheapestRoute(Graph& g1, Graph& g2, map<int,Stop>& paragens, int a, int b, map<int, string>& dictZonas);
 
 };
 

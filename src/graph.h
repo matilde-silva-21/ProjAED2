@@ -13,6 +13,7 @@
 #include "Stop.h"
 #include "queue"
 #include "stack"
+#include "map"
 using namespace std;
 
 /*criar um mapa que tenha indice igual ao node e depois da origem as stops?*/
@@ -34,7 +35,7 @@ class Graph {
 
 public:
     // Constructor: nr nodes and direction
-    Graph(int nodes, bool dir = true);
+    Graph(int nodes, bool dir);
 
     // Add edge from source to destination with a certain weight
     void addEdge(int src, int dest, float weight);

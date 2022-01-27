@@ -30,7 +30,7 @@ double Initialize::peso(const Stop& s1, const Stop& s2){
     return haversine(s1.getLatitude(), s1.getLongitude(), s2.getLatitude(), s2.getLongitude());
 }
 
-void Initialize::addAllEdges(Graph& g1, map<int, Stop> &paragens, const BST<Line>& linhas) {
+void Initialize::addAllEdges(Graph& g1, map<int, Stop> &paragens, const BST<Line>& linhas, Graph& g2) {
     for (auto it1 = linhas.begin() ; it1!=linhas.end() ; it1++){
         auto percurso0 = (*it1).getPercurso0(), percurso1 = (*it1).getPercurso1();
 
@@ -40,6 +40,8 @@ void Initialize::addAllEdges(Graph& g1, map<int, Stop> &paragens, const BST<Line
             int index2 = dictionary[*(it2)];
             Stop s1 = paragens[index1], s2 = paragens[index2];
             g1.addEdge(index1,index2, peso(s1,s2));
+
+            if(s1.getZona()!=s2.getZona()) g2.addEdge(zonas[s1.getZona()], zonas[s2.getZona()], 1.0);
 
             paragens[index1].addLine(*it1);
             paragens[index2].addLine(*it1);
@@ -52,6 +54,8 @@ void Initialize::addAllEdges(Graph& g1, map<int, Stop> &paragens, const BST<Line
             Stop s1 = paragens[index1], s2 = paragens[index2];
             g1.addEdge(index1,index2, peso(s1,s2));
 
+            if(s1.getZona()!=s2.getZona()) g2.addEdge(zonas[s1.getZona()], zonas[s2.getZona()], 1.0);
+
             paragens[index1].addLine(*it1);
             paragens[index2].addLine(*it1);
         }
@@ -61,6 +65,9 @@ void Initialize::addAllEdges(Graph& g1, map<int, Stop> &paragens, const BST<Line
 void Initialize::fillDictionary(const map<int, Stop> &paragens) {
     for(auto & paragen : paragens){
         dictionary.emplace((paragen.second).getCode(), paragen.first);
+        if(zonas.find(paragen.second.getZona())==zonas.end()){
+            zonas[paragen.second.getZona()] = zonas.size()+1;
+        }
     }
 }
 
@@ -88,15 +95,14 @@ Stop Initialize::closestStation(map<int, Stop> &paragens, float latitude, float 
 vector<Line> Initialize::stopsToLine(const vector<Stop> &s1) {
 
     vector<Line> final;
-    set<Line> matchingLines;
     map<Line, set<Stop>> counter; //para cada linha as stops no percurso
-    int check = 1;
+    map<Line,set<Stop>>::iterator marker = counter.begin();
 
     for(const Stop & it : s1){
         set<Line> linhas1 = it.getLines();
         for(const Line& l1: linhas1){
             //se a linha nao existir no set
-            if(matchingLines.insert(l1).second) {
+            if(counter.find(l1)==counter.end()) {
                 set<Stop> v1;
                 v1.insert(it);
                 counter[l1] = v1;
@@ -110,9 +116,35 @@ vector<Line> Initialize::stopsToLine(const vector<Stop> &s1) {
 
     //ate agora isto so funciona para viagens com uma linha, sem troca, mesmo que seja na mesma paragem
 
+    // ver no mapa qual o set com + paragens que inclui o ponto de partida. depois pegar no local correspondente a ultima paragem fiavel dessa linha.
+    // se só tiver uma linha otimo, repetimos este processo até encontrar a paragem final. caso contrario repetimos isto tudo para todas as linhas que la passam
+    // solucao mediocre mas deve funcionar
+
+
     for(auto it = counter.begin(); it!=counter.end(); it++){
+        //if(it->second.size() > marker->second.size() && std::find(it->second.begin(), it->second.end(), s1.begin())!=it->second.end()) marker = it;
         if(it->second.size() == s1.size()) final.push_back(it->first);
     }
 
-    return final;
+
+
+
+    if(!final.empty()) return final;
+
+
+    else return final;
 }
+
+map<string, int> Initialize::getZonas() {
+    return zonas;
+}
+
+vector<int> Initialize::cheapestRoute(Graph& g1, Graph& g2, map<int,Stop>& paragens, int a, int b, map<int, string>& dictZonas) {
+    Stop s1 = paragens[a], s2 = paragens[b];
+    if(s1.getZona() == s2.getZona()) return g1.dijkstra(a,b);
+    else{
+        vector<int> caminho = g2.dijkstra(zonas[s1.getZona()], zonas[s2.getZona()]);
+        //criar um grafo novo so com as zonas escolhidas?
+    }
+}
+

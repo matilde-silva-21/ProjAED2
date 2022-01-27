@@ -26,6 +26,7 @@ public:
     bool operator==(const Stop& s1) const;
     void addLine(Line l1);
     std::set<Line> getLines() const;
+    std::string getZona() const;
 };
 
 

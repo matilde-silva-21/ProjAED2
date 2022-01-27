@@ -36,3 +36,7 @@ std::set<Line> Stop::getLines() const {
     return linhas;
 }
 
+std::string Stop::getZona() const {
+    return zona;
+}
+
