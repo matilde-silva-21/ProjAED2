@@ -151,7 +151,7 @@ vector<int> Graph::dijkstra(int start, int finish) {
             return course;
         }
         for(auto& e: nodes[min].adj){
-            if(nodes[e.dest].visited) break;
+            if(nodes[e.dest].visited) continue;
 
             else{
                 int destine = e.dest;
@@ -165,3 +165,50 @@ vector<int> Graph::dijkstra(int start, int finish) {
     }
     return course;
 }
+
+vector<int> Graph::dijkstra2(int start, int finish, map<string,bool> zonasPermitidas, map<int,Stop> paragens) {
+
+    float distance[n+1];
+    MinHeap<int, float> heap(n,0);
+    int predecessor[n+1];
+    vector<int> course;
+
+    for(int i=1;i<=nodes.size(); i++){
+        distance[i] = FLOAT_MAX;
+        nodes[i].visited = false;
+    }
+
+    heap.insert(start, 0.0);
+
+    while(heap.getSize()!=0){
+        pair<int,float> p = heap.removeMin();
+        int min = p.first;
+        nodes[min].visited = true;
+        if(min == finish) {
+            int one = finish, two;
+
+            course.push_back(finish);
+
+            while(one!=start){
+                two = predecessor[one];
+                course.emplace(course.begin(),two);
+                one = two;
+            }
+            return course;
+        }
+        for(auto& e: nodes[min].adj){
+            if(nodes[e.dest].visited || !zonasPermitidas[paragens[e.dest].getZona()]) continue;
+
+            else{
+                int destine = e.dest;
+                float weight = e.weight + p.second;
+                predecessor[destine]=min;
+                if(!heap.hasKey(destine)) heap.insert(destine,weight);
+                else heap.decreaseKey(destine,weight);
+            }
+        }
+
+    }
+    return course;
+}
+

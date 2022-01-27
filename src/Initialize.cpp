@@ -139,12 +139,27 @@ map<string, int> Initialize::getZonas() {
     return zonas;
 }
 
-vector<int> Initialize::cheapestRoute(Graph& g1, Graph& g2, map<int,Stop>& paragens, int a, int b, map<int, string>& dictZonas) {
+vector<int> Initialize::cheapestRoute(Graph& g1, Graph& g2, map<int,Stop>& paragens, int a, int b, map<int, string> dictZonas) {
     Stop s1 = paragens[a], s2 = paragens[b];
+    map<string,bool> zonasPermitidas;
     if(s1.getZona() == s2.getZona()) return g1.dijkstra(a,b);
-    else{
+    else {
         vector<int> caminho = g2.dijkstra(zonas[s1.getZona()], zonas[s2.getZona()]);
         //criar um grafo novo so com as zonas escolhidas?
+
+        for(auto it: zonas){
+            zonasPermitidas[it.first] = false;
+
+        }
+
+        for(auto it: caminho){
+            zonasPermitidas[dictZonas[it]] = true;
+        }
+
+        return g1.dijkstra2(a,b,zonasPermitidas,paragens);
+
+
     }
+
 }
 

@@ -45,7 +45,13 @@ int main() {
 
     vector<int> ferro = i1.cheapestRoute(g1,g2,paragens,i1.findMapIndex(s1),i1.findMapIndex(s2),dictZonas);
     vector<int> mano = g1.dijkstra(i1.findMapIndex(s1),i1.findMapIndex(s2));
-    cout<<endl;
+    cout<<endl<<endl;
+
+    for(auto it: ferro){
+        cout << paragens[it].getCode() << " ";
+    }
+
+    cout<<endl<<endl;
 
     for(auto it: mano){
         cout << paragens[it].getCode() << " ";
