@@ -68,6 +68,7 @@ void Menu::takeInput() {
                     std::cout << "Showing best path given the locations..." << std::endl;
                 } else if ((!departureStop.empty() && !destinyStop.empty())) {
                     std::cout << "Showing best path given the paths..." << std::endl;
+                    std::cout << std::endl;
                     //provide user with this type of path
                 } else {
                     std::cout << "You need to select both stops or both locations to know the best path" << std::endl;
