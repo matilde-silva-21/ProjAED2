@@ -96,7 +96,7 @@ vector<Line> Initialize::stopsToLine(const vector<Stop> &s1) {
 
     vector<Line> final;
     map<Line, set<Stop>> counter; //para cada linha as stops no percurso
-    map<Line,set<Stop>>::iterator marker = counter.begin();
+    pair<Line,set<Stop>> marker = *counter.begin();
 
     for(const Stop & it : s1){
         set<Line> linhas1 = it.getLines();
@@ -120,19 +120,16 @@ vector<Line> Initialize::stopsToLine(const vector<Stop> &s1) {
     // se só tiver uma linha otimo, repetimos este processo até encontrar a paragem final. caso contrario repetimos isto tudo para todas as linhas que la passam
     // solucao mediocre mas deve funcionar
 
-
     for(auto it = counter.begin(); it!=counter.end(); it++){
-        //if(it->second.size() > marker->second.size() && std::find(it->second.begin(), it->second.end(), s1.begin())!=it->second.end()) marker = it;
+        if(it->second.size()>marker.second.size()) marker = *it;
         if(it->second.size() == s1.size()) final.push_back(it->first);
     }
 
+    //if(!final.empty()) return final;
 
-
-
-    if(!final.empty()) return final;
-
-
-    else return final;
+    cout << "puta " << endl;
+    cout << marker.first.getCode() << endl;
+    return final;
 }
 
 map<string, int> Initialize::getZonas() {
@@ -147,9 +144,8 @@ vector<int> Initialize::cheapestRoute(Graph& g1, Graph& g2, map<int,Stop>& parag
         vector<int> caminho = g2.dijkstra(zonas[s1.getZona()], zonas[s2.getZona()]);
         //criar um grafo novo so com as zonas escolhidas?
 
-        for(auto it: zonas){
+        for(const auto& it: zonas){
             zonasPermitidas[it.first] = false;
-
         }
 
         for(auto it: caminho){
@@ -157,7 +153,6 @@ vector<int> Initialize::cheapestRoute(Graph& g1, Graph& g2, map<int,Stop>& parag
         }
 
         return g1.dijkstra2(a,b,zonasPermitidas,paragens);
-
 
     }
 

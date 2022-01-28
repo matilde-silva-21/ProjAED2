@@ -154,6 +154,7 @@ vector<int> Graph::dijkstra(int start, int finish) {
             if(nodes[e.dest].visited) continue;
 
             else{
+                nodes[e.dest].visited = true;
                 int destine = e.dest;
                 float weight = e.weight + p.second;
                 predecessor[destine]=min;

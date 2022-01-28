@@ -30,30 +30,28 @@ int main() {
 
     for(auto it: zonas){
         dictZonas[it.second] = it.first;
-        cout <<it.first<<" ";
     }
 
 
     Graph g2(zonas.size(), false);
 
-    string s1 = "TRD1", s2 = "AML1";
+    string s1 = "MPL7", s2 = "FLOS1";
     i1.addAllEdges(g1,paragens,diurno,g2);
     i1.addAllEdges(g1,paragens,noturna,g2);
+
 
     // se o grafo n liga duas zonas que estao conectadas geograficamente,
     // é porque nao ha linhas coincidentes entre as duas zonas e portanto nao importa que nao haja edge
 
     vector<int> ferro = i1.cheapestRoute(g1,g2,paragens,i1.findMapIndex(s1),i1.findMapIndex(s2),dictZonas);
     vector<int> mano = g1.dijkstra(i1.findMapIndex(s1),i1.findMapIndex(s2));
+    vector<Stop> mana;
     cout<<endl<<endl;
 
     for(auto it: ferro){
+        mana.push_back(paragens[it]);
         cout << paragens[it].getCode() << " ";
     }
 
-    cout<<endl<<endl;
-
-    for(auto it: mano){
-        cout << paragens[it].getCode() << " ";
-    }
+    //i1.stopsToLine(mana);
 }
