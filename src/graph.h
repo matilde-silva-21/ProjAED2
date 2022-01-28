@@ -58,7 +58,7 @@ public:
 
     bool noDuplicates(int src, int dest, double weight);
 
-    vector<int> dijkstra2(int start, int finish, map<string,bool> zonasPermitidas, map<int,Stop> paragens);
+    vector<int> dijkstra2(int start, int finish, map<string,bool>& zonasPermitidas, map<int, Stop>& paragens);
 };
 
 #endif

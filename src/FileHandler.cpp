@@ -54,6 +54,8 @@ BST<Line> FileHandler::readLines(bool night) {
         }
     }
 
+    file.close();
+
     return final;
 
 }
@@ -89,6 +91,8 @@ map<int, Stop> FileHandler::readStops() {
             final.emplace(nstops, s1);
         }
     }
+
+    file.close();
 
     return final;
 }

@@ -154,7 +154,6 @@ vector<int> Graph::dijkstra(int start, int finish) {
             if(nodes[e.dest].visited) continue;
 
             else{
-                nodes[e.dest].visited = true;
                 int destine = e.dest;
                 float weight = e.weight + p.second;
                 predecessor[destine]=min;
@@ -167,7 +166,7 @@ vector<int> Graph::dijkstra(int start, int finish) {
     return course;
 }
 
-vector<int> Graph::dijkstra2(int start, int finish, map<string,bool> zonasPermitidas, map<int,Stop> paragens) {
+vector<int> Graph::dijkstra2(int start, int finish, map<string,bool>& zonasPermitidas, map<int, Stop>& paragens) {
 
     float distance[n+1];
     MinHeap<int, float> heap(n,0);
