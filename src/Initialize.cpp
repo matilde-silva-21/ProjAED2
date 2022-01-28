@@ -79,6 +79,8 @@ int Initialize::findMapIndex(string& paragem) {
     return  dictionary[paragem];
 }
 
+
+
 Stop Initialize::closestStation(map<int, Stop> &paragens, float latitude, float longitude) {
     float min = FLOAT_MAX;
     auto final = paragens.end();
@@ -91,6 +93,8 @@ Stop Initialize::closestStation(map<int, Stop> &paragens, float latitude, float 
     }
     return final->second;
 }
+
+
 
 map<Line, list<Stop>> Initialize::stopsToLine(const vector<Stop> &s1) {
 
@@ -120,17 +124,15 @@ map<Line, list<Stop>> Initialize::stopsToLine(const vector<Stop> &s1) {
 
     //se o fim da liata coincidir com o inicio da lista entao estao juntas!!!!!!!!!!
 
-    for(auto it = counter.begin(); it!=counter.end(); it++){
-        if(it->second.size() == s1.size()) ret[it->first] = counter[it->first];
-        if(it->second.size()<2) it = --counter.erase(it);
+    for(auto it = counter.begin(); it!=counter.end(); ){
+        if(it->second.size() == s1.size()) {ret[it->first] = counter[it->first]; return ret;}
+        if(it->second.size()<2) it=counter.erase(it);
+        else{it++;}
     }
 
     for(auto it = counter.begin(); it!=counter.end(); it++){
-        cout <<endl<< "linha "<<it->first.getCode() <<endl;
-        //for(auto it3: it->second){cout << it3.getCode() << " ";}
         for(auto it2 = it; it2!=counter.end(); it2++){
             if(find(it2->second.begin(), it2->second.end(), it->second.back()) != it2->second.end() && it2->first.getCode()!=it->first.getCode()){
-                cout << it2->first.getCode()<<" ";
                 aux[it->first].push_back(it2->first);
             }
         }
@@ -156,12 +158,33 @@ map<string, int> Initialize::getZonas() {
     return zonas;
 }
 
-vector<int> Initialize::cheapestRoute(Graph& g1, map<string,bool>& zonasPermitidas, int a, int b, map<int, Stop>& paragens) {
-    if(zonasPermitidas.size()==1) return g1.dijkstra(a,b);
+vector<int> Initialize::cheapestRoute(Graph& g1, Graph& g2, int a, int b, map<int, Stop>& paragens, map<int, string>& dictZonas) {
+    if(paragens[a].getZona()==paragens[b].getZona()) return g1.dijkstra(a,b);
 
-    else {
-        return g1.dijkstra2(a,b,zonasPermitidas, paragens);
+    map<string,bool> zonasPermitidas;
+    int zonaS1 = zonas[paragens[a].getZona()] , zonaS2 = zonas[paragens[b].getZona()];
+    for(const auto& it: zonas){
+        zonasPermitidas[it.first] = true;
     }
+
+    vector<int> zuzu = g2.bfs(zonaS1, zonaS2);
+
+    for(const auto& it: zonas){
+        zonasPermitidas[it.first] = false;
+    }
+    for(auto it: zuzu){
+        zonasPermitidas[dictZonas[it]] = true;
+    }
+
+    for(auto it : zonasPermitidas){
+        cout << it.first << " " <<it.second<<endl;
+    }
+
+    vector<int> result = g1.dijkstra2(a,b,zonasPermitidas, paragens);
+    //se nao houver rota fiavel pelas zonas escolhidas entao usar o algoritmo normal
+    if(result.empty()) return g1.dijkstra(a,b);
+    else return result;
+
 }
 
 

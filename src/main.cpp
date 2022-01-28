@@ -36,32 +36,24 @@ int main() {
 
     Graph g2(zonas.size(), false);
 
-    string s1 = "PP2", s2 = "IPO4";
+
+
+    string s1 = "MPL7", s2 = "FLOS1";
+
     i1.addAllEdges(g1,paragens,diurno,g2);
-    //i1.addAllEdges(g1,paragens,noturna,g2);
+    i1.addAllEdges(g1,paragens,noturna,g2);
 
-    //int zonaS1 = zonas[paragens[i1.findMapIndex(s1)].getZona()] , zonaS2 = zonas[paragens[i1.findMapIndex(s2)].getZona()];
 
-    //vector<int> zuzu = g2.dijkstra(zonaS1, zonaS2);
-
-    /*for(const auto& it: zonas){
-        zonasPermitidas[it.first] = true;
-    }
-    for(auto it: zuzu){
-        zonasPermitidas[dictZonas[it]] = true;
-    }
-    // se o grafo n liga duas zonas que estao conectadas geograficamente,
-    // é porque nao ha linhas coincidentes entre as duas zonas e portanto nao importa que nao haja edge
-
-    vector<int> ferro = i1.cheapestRoute(g1,zonasPermitidas, i1.findMapIndex(s1),i1.findMapIndex(s2));
-    */
+    vector<int> ferro = i1.cheapestRoute(g1,g2, i1.findMapIndex(s1),i1.findMapIndex(s2),paragens, dictZonas);
     vector<int> mano = g1.dijkstra(i1.findMapIndex(s1),i1.findMapIndex(s2));
-    vector<Stop> mana;
-    cout<<endl<<endl;
 
-    for(auto it: mano){
+    vector<Stop> mana;
+    for(auto it: ferro){
+        cout << paragens[it].getCode() << " ";
         mana.push_back(paragens[it]);
     }
 
-    i1.stopsToLine(mana);
+    /*for(auto it: i1.stopsToLine(mana)){
+        cout << endl<<endl<<it.first.getCode();
+    }*/
 }

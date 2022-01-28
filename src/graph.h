@@ -44,7 +44,7 @@ public:
     int prim(int v);
 
     //algoritmo que pesquisa a menor distancia
-    vector<int> bfs(int a, int b, float& d);
+    vector<int> bfs(int a, int b);
 
     vector<int> dijkstra(int start, int finish);
 

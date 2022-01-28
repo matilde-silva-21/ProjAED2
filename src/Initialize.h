@@ -32,7 +32,7 @@ public:
 
     map<Line, list<Stop>> stopsToLine(const vector<Stop>& s1);
 
-    vector<int> cheapestRoute(Graph& g1, map<string,bool>& zonasPermitidas, int a, int b, map<int, Stop>& paragens);
+    vector<int> cheapestRoute(Graph& g1, Graph& g2, int a, int b, map<int, Stop>& paragens, map<int, string>& dictZonas);
 
 
 };
