@@ -44,7 +44,7 @@ public:
     int prim(int v);
 
     //algoritmo que pesquisa a menor distancia
-    vector<int> bfs(int a, int b, float& d);
+    vector<int> bfs(int a, int b);
 
     vector<int> dijkstra(int start, int finish);
 
@@ -58,7 +58,7 @@ public:
 
     bool noDuplicates(int src, int dest, double weight);
 
-    vector<int> dijkstra2(int start, int finish, map<string,bool> zonasPermitidas, map<int,Stop> paragens);
+    vector<int> dijkstra2(int start, int finish, map<string,bool>& zonasPermitidas, map<int, Stop>& paragens);
 };
 
 #endif

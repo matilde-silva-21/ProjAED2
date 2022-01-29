@@ -74,7 +74,8 @@ bool Graph::noDuplicates(int src, int dest, double weight) {
 
 
 
-vector<int> Graph::bfs(int v, int b, float& d){
+vector<int> Graph::bfs(int v, int b){
+    float d;
     vector<int> course;
     if (v == b) return course;
     //distance representa a distancia de qualquer node ao node 1
@@ -166,7 +167,7 @@ vector<int> Graph::dijkstra(int start, int finish) {
     return course;
 }
 
-vector<int> Graph::dijkstra2(int start, int finish, map<string,bool> zonasPermitidas, map<int,Stop> paragens) {
+vector<int> Graph::dijkstra2(int start, int finish, map<string,bool>& zonasPermitidas, map<int, Stop>& paragens) {
 
     float distance[n+1];
     MinHeap<int, float> heap(n,0);
@@ -185,6 +186,7 @@ vector<int> Graph::dijkstra2(int start, int finish, map<string,bool> zonasPermit
         int min = p.first;
         nodes[min].visited = true;
         if(min == finish) {
+
             int one = finish, two;
 
             course.push_back(finish);

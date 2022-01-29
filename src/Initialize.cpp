@@ -79,6 +79,8 @@ int Initialize::findMapIndex(string& paragem) {
     return  dictionary[paragem];
 }
 
+
+
 Stop Initialize::closestStation(map<int, Stop> &paragens, float latitude, float longitude) {
     float min = FLOAT_MAX;
     auto final = paragens.end();
@@ -92,74 +94,102 @@ Stop Initialize::closestStation(map<int, Stop> &paragens, float latitude, float 
     return final->second;
 }
 
-vector<Line> Initialize::stopsToLine(const vector<Stop> &s1) {
 
+
+map<Line, list<Stop>> Initialize::stopsToLine(const vector<Stop> &s1) {
+
+    auto lastToWork = s1.begin();
     vector<Line> final;
-    map<Line, set<Stop>> counter; //para cada linha as stops no percurso
-    map<Line,set<Stop>>::iterator marker = counter.begin();
+    map<Line, list<Stop>> counter, greg, ret; //para cada linha as stops no percurso
+    map<Line, list<Line>> aux;
 
     for(const Stop & it : s1){
         set<Line> linhas1 = it.getLines();
         for(const Line& l1: linhas1){
             //se a linha nao existir no set
             if(counter.find(l1)==counter.end()) {
-                set<Stop> v1;
-                v1.insert(it);
+                list<Stop> v1;
+                v1.push_back(it);
                 counter[l1] = v1;
             }
             //se a linha existir
             else{
-                counter[l1].insert(it);
+                counter[l1].push_back(it);
             }
+
         }
     }
 
     //ate agora isto so funciona para viagens com uma linha, sem troca, mesmo que seja na mesma paragem
 
-    // ver no mapa qual o set com + paragens que inclui o ponto de partida. depois pegar no local correspondente a ultima paragem fiavel dessa linha.
-    // se só tiver uma linha otimo, repetimos este processo até encontrar a paragem final. caso contrario repetimos isto tudo para todas as linhas que la passam
-    // solucao mediocre mas deve funcionar
+    //se o fim da liata coincidir com o inicio da lista entao estao juntas!!!!!!!!!!
 
+    for(auto it = counter.begin(); it!=counter.end(); ){
+        if(it->second.size() == s1.size()) {ret[it->first] = counter[it->first]; return ret;}
+        if(it->second.size()<2) it=counter.erase(it);
+        else{it++;}
+    }
 
+    //esta parte compara a parte do percurso coincidente com cada linha, o ideal era que para cada linha nao houvesse mais que 1 paragem repetida
     for(auto it = counter.begin(); it!=counter.end(); it++){
-        //if(it->second.size() > marker->second.size() && std::find(it->second.begin(), it->second.end(), s1.begin())!=it->second.end()) marker = it;
-        if(it->second.size() == s1.size()) final.push_back(it->first);
+        cout <<endl<< "linha "<<it->first.getCode() <<endl;
+        for(auto it3: it->second){cout << it3.getCode() << " ";}
+        for(auto it2 = it; it2!=counter.end(); it2++){
+            if(it2->second.front() == it->second.back() && it2->first.getCode()!=it->first.getCode()){
+                cout << it2->first.getCode()<<" ";
+                aux[it->first].push_back(it2->first);
+            }
+        }
     }
 
 
+    for(auto it = aux.begin(); it!=aux.end(); it++){
+        if(!(counter[it->first].front()==s1.front())) continue;
+        //se for uma route de 1 so troca com 1 unica paragem coincidente
+        for(auto it2 = it->second.begin() ; it2!=it->second.end(); it2++){
+            if(counter[*it2].back() == s1.back()){
+                cout << "linha "<<it->first.getCode() << " ligada a linha "<<it2->getCode()<<" na paragem "<<counter[*it2].front().getCode()<<endl;
+                ret[it->first] = counter[it->first];
+                ret[*it2] = counter[*it2];
+            }
+            else{
 
+            }
+        }
 
-    if(!final.empty()) return final;
+    }
 
+    return ret;
 
-    else return final;
 }
 
 map<string, int> Initialize::getZonas() {
     return zonas;
 }
 
-vector<int> Initialize::cheapestRoute(Graph& g1, Graph& g2, map<int,Stop>& paragens, int a, int b, map<int, string> dictZonas) {
-    Stop s1 = paragens[a], s2 = paragens[b];
+vector<int> Initialize::cheapestRoute(Graph& g1, Graph& g2, int a, int b, map<int, Stop>& paragens, map<int, string>& dictZonas) {
+    if(paragens[a].getZona()==paragens[b].getZona()) return g1.dijkstra(a,b);
+
     map<string,bool> zonasPermitidas;
-    if(s1.getZona() == s2.getZona()) return g1.dijkstra(a,b);
-    else {
-        vector<int> caminho = g2.dijkstra(zonas[s1.getZona()], zonas[s2.getZona()]);
-        //criar um grafo novo so com as zonas escolhidas?
-
-        for(auto it: zonas){
-            zonasPermitidas[it.first] = false;
-
-        }
-
-        for(auto it: caminho){
-            zonasPermitidas[dictZonas[it]] = true;
-        }
-
-        return g1.dijkstra2(a,b,zonasPermitidas,paragens);
-
-
+    int zonaS1 = zonas[paragens[a].getZona()] , zonaS2 = zonas[paragens[b].getZona()];
+    for(const auto& it: zonas){
+        zonasPermitidas[it.first] = true;
     }
 
+    vector<int> zuzu = g2.bfs(zonaS1, zonaS2);
+
+    for(const auto& it: zonas){
+        zonasPermitidas[it.first] = false;
+    }
+    for(auto it: zuzu){
+        zonasPermitidas[dictZonas[it]] = true;
+    }
+
+    vector<int> result = g1.dijkstra2(a,b,zonasPermitidas, paragens);
+    //se nao houver rota fiavel pelas zonas escolhidas entao usar o algoritmo normal
+    if(result.empty()) return g1.dijkstra(a,b);
+    else return result;
+
 }
+
 
