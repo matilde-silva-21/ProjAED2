@@ -130,21 +130,30 @@ map<Line, list<Stop>> Initialize::stopsToLine(const vector<Stop> &s1) {
         else{it++;}
     }
 
+    //esta parte compara a parte do percurso coincidente com cada linha, o ideal era que para cada linha nao houvesse mais que 1 paragem repetida
     for(auto it = counter.begin(); it!=counter.end(); it++){
+        cout <<endl<< "linha "<<it->first.getCode() <<endl;
+        for(auto it3: it->second){cout << it3.getCode() << " ";}
         for(auto it2 = it; it2!=counter.end(); it2++){
-            if(find(it2->second.begin(), it2->second.end(), it->second.back()) != it2->second.end() && it2->first.getCode()!=it->first.getCode()){
+            if(it2->second.front() == it->second.back() && it2->first.getCode()!=it->first.getCode()){
+                cout << it2->first.getCode()<<" ";
                 aux[it->first].push_back(it2->first);
             }
         }
     }
 
+
     for(auto it = aux.begin(); it!=aux.end(); it++){
+        if(!(counter[it->first].front()==s1.front())) continue;
         //se for uma route de 1 so troca com 1 unica paragem coincidente
         for(auto it2 = it->second.begin() ; it2!=it->second.end(); it2++){
-            if(counter[*it2].back() == s1.back() && counter[it->first].front()==s1.front()){
+            if(counter[*it2].back() == s1.back()){
                 cout << "linha "<<it->first.getCode() << " ligada a linha "<<it2->getCode()<<" na paragem "<<counter[*it2].front().getCode()<<endl;
                 ret[it->first] = counter[it->first];
                 ret[*it2] = counter[*it2];
+            }
+            else{
+
             }
         }
 
@@ -174,10 +183,6 @@ vector<int> Initialize::cheapestRoute(Graph& g1, Graph& g2, int a, int b, map<in
     }
     for(auto it: zuzu){
         zonasPermitidas[dictZonas[it]] = true;
-    }
-
-    for(auto it : zonasPermitidas){
-        cout << it.first << " " <<it.second<<endl;
     }
 
     vector<int> result = g1.dijkstra2(a,b,zonasPermitidas, paragens);

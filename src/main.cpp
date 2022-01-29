@@ -41,7 +41,7 @@ int main() {
     string s1 = "MPL7", s2 = "FLOS1";
 
     i1.addAllEdges(g1,paragens,diurno,g2);
-    i1.addAllEdges(g1,paragens,noturna,g2);
+    //i1.addAllEdges(g1,paragens,noturna,g2);
 
 
     vector<int> ferro = i1.cheapestRoute(g1,g2, i1.findMapIndex(s1),i1.findMapIndex(s2),paragens, dictZonas);
@@ -53,7 +53,8 @@ int main() {
         mana.push_back(paragens[it]);
     }
 
-    /*for(auto it: i1.stopsToLine(mana)){
+    cout << endl<<endl;
+    for(auto it: i1.stopsToLine(mana)){
         cout << endl<<endl<<it.first.getCode();
-    }*/
+    }
 }
