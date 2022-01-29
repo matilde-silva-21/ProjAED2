@@ -6,15 +6,31 @@
 
 #IncludeRegexTransform: 
 
-<<<<<<< HEAD
-C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Menu.cpp
-Menu.h
-C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Menu.h
-conio.h
-=======
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/FileHandler.h
+fstream
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/fstream
+sstream
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/sstream
+iostream
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/iostream
+Line.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Line.h
+Stop.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Stop.h
+set
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/set
+bst.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/bst.h
+graph.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/graph.h
+map
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/map
+
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Initialize.cpp
 Initialize.h
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Initialize.h
+unordered_set
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/unordered_set
 
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Initialize.h
 Stop.h
@@ -40,6 +56,12 @@ C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/iostream
 forward_list
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/forward_list
 
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Menu.h
+string
+-
+iostream
+-
+
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Stop.h
 string
 -
@@ -60,10 +82,53 @@ C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/disjointSets.h
 unordered_map
 >>>>>>> matilde
 -
-
+-
 C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Menu.h
 string
 -
 iostream
+-
+-
+
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/graph.h
+minHeap.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/minHeap.h
+disjointSets.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/disjointSets.h
+vector
+-
+list
+-
+iostream
+-
+Stop.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Stop.h
+queue
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/queue
+stack
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/stack
+map
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/map
+
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/main.cpp
+iostream
+-
+FileHandler.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/FileHandler.h
+cmath
+-
+algorithm
+-
+Initialize.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Initialize.h
+graph.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/graph.h
+Menu.h
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/Menu.h
+
+C:/Users/clfma/Desktop/Faculdade/Y2S1/AED/ProjAED2/src/minHeap.h
+vector
+-
+unordered_map
 -
 

@@ -30,7 +30,7 @@ public:
 
     static Stop closestStation(map<int,Stop>& paragens, float latitude, float longitude);
 
-    map<Line, list<Stop>> stopsToLine(const vector<Stop>& s1);
+    list<pair<Line, list<Stop>>> stopsToLine(const vector<Stop>& s1);
 
     vector<int> cheapestRoute(Graph& g1, Graph& g2, int a, int b, map<int, Stop>& paragens, map<int, string>& dictZonas);
 

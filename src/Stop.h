@@ -24,6 +24,7 @@ public:
     Stop(){latitude=0.0; longitude = 0.0;}
     bool operator<(const Stop& s1) const;
     bool operator==(const Stop& s1) const;
+    bool operator!=(const Stop& s1) const;
     void addLine(Line l1);
     std::set<Line> getLines() const;
     std::string getZona() const;

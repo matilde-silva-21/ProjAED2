@@ -40,3 +40,7 @@ std::string Stop::getZona() const {
     return zona;
 }
 
+bool Stop::operator!=(const Stop &s1) const {
+    return s1.code!=code;
+}
+

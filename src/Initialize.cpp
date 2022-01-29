@@ -3,6 +3,7 @@
 //
 
 #include "Initialize.h"
+#include "unordered_set"
 
 double Initialize::haversine(double lat1, double lon1, double lat2, double lon2)
 {
@@ -95,13 +96,62 @@ Stop Initialize::closestStation(map<int, Stop> &paragens, float latitude, float 
 }
 
 
+map<Line, list<Stop>> noMoreThanOneStop(map<Line, list<Stop>> aux){
+    map<Line, list<Stop>> final;
 
-map<Line, list<Stop>> Initialize::stopsToLine(const vector<Stop> &s1) {
+    for(auto it=aux.begin(); it!=aux.end(); ){
+
+        list<Stop> steve;
+        it++;
+        if(it==aux.end()) break;
+        Line l1 = it->first;
+        list<Stop> stops1 = it->second;
+        it++;
+        if(it==aux.end()) break;
+        list<Stop> stops2 = (it)->second;
+        Line l2 = it->first;
+
+        cout <<endl;
+        for(auto t2: stops2){
+            if(find(steve.begin(), steve.end(), t2)==steve.end()) steve.push_back(t2);
+        }
+        for(auto t2: stops1){
+            if(find(steve.begin(), steve.end(), t2)==steve.end()) steve.push_back(t2);
+        }
+
+        cout << endl << "exemplo" <<endl;
+        Stop lastInserted;
+        int count=0;
+        for(auto& it2: steve){
+            cout << it2.getCode() <<" ";
+            if(find(stops1.begin(), stops1.end(), it2)!=stops1.end()){
+                final[l1].push_back(it2);
+                lastInserted = it2;
+
+            }
+            else if (count==0){
+                final[l1].push_back(lastInserted);
+                final[l2].push_back(it2);
+                count++;
+            }
+            else{
+                final[l2].push_back(it2);
+
+            }
+        }
+
+    }
+
+    return final;
+}
+
+list<pair<Line, list<Stop>>> Initialize::stopsToLine(const vector<Stop> &s1) {
 
     auto lastToWork = s1.begin();
     vector<Line> final;
-    map<Line, list<Stop>> counter, greg, ret; //para cada linha as stops no percurso
-    map<Line, list<Line>> aux;
+    map<Line, list<Stop>> counter, greg; //para cada linha as stops no percurso
+    map<Line, set<Line>> aux;
+    list<pair<Line, list<Stop>>> ret;
 
     for(const Stop & it : s1){
         set<Line> linhas1 = it.getLines();
@@ -125,39 +175,42 @@ map<Line, list<Stop>> Initialize::stopsToLine(const vector<Stop> &s1) {
     //se o fim da liata coincidir com o inicio da lista entao estao juntas!!!!!!!!!!
 
     for(auto it = counter.begin(); it!=counter.end(); ){
-        if(it->second.size() == s1.size()) {ret[it->first] = counter[it->first]; return ret;}
+        if(it->second.size() == s1.size()) {ret.push_back(make_pair(it->first, counter[it->first])); return ret;}
         if(it->second.size()<2) it=counter.erase(it);
         else{it++;}
     }
 
     //esta parte compara a parte do percurso coincidente com cada linha, o ideal era que para cada linha nao houvesse mais que 1 paragem repetida
     for(auto it = counter.begin(); it!=counter.end(); it++){
-        cout <<endl<< "linha "<<it->first.getCode() <<endl;
-        for(auto it3: it->second){cout << it3.getCode() << " ";}
-        for(auto it2 = it; it2!=counter.end(); it2++){
-            if(it2->second.front() == it->second.back() && it2->first.getCode()!=it->first.getCode()){
-                cout << it2->first.getCode()<<" ";
-                aux[it->first].push_back(it2->first);
+        for(auto it2 = counter.begin(); it2!=counter.end(); it2++){
+            for(auto it3: it->second){
+                if(find(it2->second.begin(), it2->second.end(), it3) != it2->second.end() && it2->first.getCode()!=it->first.getCode()){
+                    aux[it->first].insert(it2->first);
+                }
             }
         }
     }
 
 
     for(auto it = aux.begin(); it!=aux.end(); it++){
+        auto back = s1.front();
         if(!(counter[it->first].front()==s1.front())) continue;
-        //se for uma route de 1 so troca com 1 unica paragem coincidente
-        for(auto it2 = it->second.begin() ; it2!=it->second.end(); it2++){
-            if(counter[*it2].back() == s1.back()){
-                cout << "linha "<<it->first.getCode() << " ligada a linha "<<it2->getCode()<<" na paragem "<<counter[*it2].front().getCode()<<endl;
-                ret[it->first] = counter[it->first];
-                ret[*it2] = counter[*it2];
-            }
-            else{
+        //se ele chega aqui é porque estamos numa linha da primeira paragem
 
+        for(auto it2 = it->second.begin() ; it2!=it->second.end(); it2++){
+            //se ele chega ate aqui e porque as linhas estao ligadas numa qualquer paragem
+            if(counter[*it2].back() == s1.back()){
+                //se ele chega aqui entao so sera necessario trocar de linha uma vez e eu quero garantir que a primeira paragem da linha que acaba com sucesso é coincidente com a linha que inicia
+                ret.push_back(make_pair(it->first, counter[it->first]));
+                ret.push_back(make_pair(*it2, counter[*it2]));
             }
         }
 
+
     }
+
+
+
 
     return ret;
 
